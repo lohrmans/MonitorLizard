@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonitorLizard">
         <activity
-            android:name=".Meal"
+            android:name=".NewMeal"
             android:exported="false" />
         <activity
             android:name=".MealList"
