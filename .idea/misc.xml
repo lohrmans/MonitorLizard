@@ -6,7 +6,10 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4125" />
         <entry key="app/src/main/res/layout/activity_meal.xml" value="0.4125" />
         <entry key="app/src/main/res/layout/activity_meal_item.xml" value="0.43432971014492755" />
+        <entry key="app/src/main/res/layout/activity_meal_item_list.xml" value="0.43432971014492755" />
         <entry key="app/src/main/res/layout/activity_meal_list.xml" value="0.45" />
+        <entry key="app/src/main/res/layout/activity_new_meal.xml" value="0.43432971014492755" />
+        <entry key="app/src/main/res/layout/activity_new_meal_item.xml" value="0.375" />
       </map>
     </option>
   </component>
