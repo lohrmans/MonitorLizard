@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonitorLizard">
         <activity
+            android:name=".MealItemList"
+            android:exported="false" />
+        <activity
+            android:name=".NewMealItem"
+            android:exported="false" />
+        <activity
             android:name=".NewMeal"
             android:exported="false" />
         <activity

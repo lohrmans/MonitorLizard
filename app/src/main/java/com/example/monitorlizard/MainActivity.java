@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnViewMeals.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, MealList.class)));
 
-
     }
 
 }
