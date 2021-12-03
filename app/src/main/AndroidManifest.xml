@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MonitorLizard">
         <activity
-            android:name=".MealActivity"
+            android:name=".Meal"
             android:exported="false" />
         <activity
-            android:name=".MealListActivity"
+            android:name=".MealList"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

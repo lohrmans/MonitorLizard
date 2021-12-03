@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MealListActivity extends AppCompatActivity {
+public class MealList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
