@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements Serializable {
+public class MainActivity extends AppCompatActivity {
 
     private Button btnNewMeal, btnViewMeals;
 
@@ -39,16 +39,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         writeToFile("file.json", "Spoot");
 
         btnNewMeal.setOnClickListener(v -> {
-            //startActivity(new Intent(MainActivity.this, NewMeal.class));
-            Intent intent = new Intent(v.getContext(), NewMeal.class);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, NewMeal.class));
         });
 
         btnViewMeals.setOnClickListener(v -> {
-            //startActivity(new Intent(MainActivity.this, MealList.class));
-            Intent intent = new Intent(v.getContext(), MealList.class);
-            intent.putExtra("meals", meals);
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this, MealList.class));
         });
 
     }
@@ -108,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 Meal mealObject = new Meal(mealName, LocalDateTime.parse(mealTime), mealItems);
                 meals.add(mealObject);
             }
+
+            MealsHolder.meals = meals;
 
         } catch (JSONException e) {
             e.printStackTrace();

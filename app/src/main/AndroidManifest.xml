@@ -19,8 +19,8 @@
             android:exported="false" />
         <activity
             android:name=".NewMeal"
-            android:exported="false"
-            android:noHistory="true"/>
+            android:exported="false"/>
+<!--            android:noHistory="true"/>-->
         <activity
             android:name=".MealList"
             android:exported="false" />

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-public class Meal implements Serializable {
+public class Meal {
 
     private String mealName;
 
@@ -16,6 +16,16 @@ public class Meal implements Serializable {
         this.mealName = mealName;
         this.mealTime = mealTime;
         this.mealItems = mealItems;
+    }
+
+    public Meal(String mealName) {
+        this.mealName = mealName;
+        this.mealTime = LocalDateTime.now();
+        mealItems = new ArrayList<>();
+    }
+
+    public void addMealItem(MealItem mealItem) {
+        mealItems.add(mealItem);
     }
 
     public String getMealName() {

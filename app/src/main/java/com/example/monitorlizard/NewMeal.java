@@ -33,11 +33,17 @@ public class NewMeal extends AppCompatActivity {
         btnSaveMeal = findViewById(R.id.btnSaveMeal);
 
         btnAddItem.setOnClickListener(v -> {
-            Intent intent = new Intent(v.getContext(), NewMealItem.class);
-            startActivity(intent);
+            if (etMealName.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter meal name.", Toast.LENGTH_SHORT).show();
+            } else {
+                Meal newMeal = new Meal(etMealName.getText().toString());
+                MealsHolder.meals.add(newMeal);
+
+                Intent intent = new Intent(v.getContext(), NewMealItem.class);
+                intent.putExtra("mealTime", newMeal.getMealTime().toString());
+                startActivity(intent);
+            }
         });
-
-
 
     }
 
