@@ -6,6 +6,12 @@ public class MealItem {
     private String itemQuantity;
     private String itemUnits;
 
+    public MealItem(String itemName, String itemQuantity, String itemUnits) {
+        this.itemName = itemName;
+        this.itemQuantity = itemQuantity;
+        this.itemUnits = itemUnits;
+    }
+
     public String getItemName() {
         return itemName;
     }
