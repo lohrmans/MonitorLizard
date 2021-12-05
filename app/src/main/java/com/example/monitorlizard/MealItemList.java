@@ -40,4 +40,26 @@ public class MealItemList extends AppCompatActivity {
         MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(MealItemList.this, mealTime);
         rvItemList.setAdapter(mealItemListAdapter);
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+
+        setContentView(R.layout.activity_meal_item_list);
+
+        rvItemList = findViewById(R.id.rvItemList);
+        tvMealName = findViewById(R.id.tvMealName);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String mealTime = bundle.getString("mealTime");
+
+        tvMealName.setText(MealsHolder.meals.get(MealsHolder.findMeal(mealTime)).getMealName());
+
+        rvItemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(MealItemList.this, mealTime);
+        rvItemList.setAdapter(mealItemListAdapter);
+    }
 }

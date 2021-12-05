@@ -19,21 +19,29 @@
             android:textColor="#000"
             android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/mealItemQuantity"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"
-            android:textColor="#000"
-            android:textSize="15sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/mealItemUnits"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"
-            android:textColor="#000"
-            android:textSize="15sp" />
+            <TextView
+                android:id="@+id/mealItemQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/mealItemUnits"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:text="Units"
+                android:textColor="#000"
+                android:textSize="15sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 

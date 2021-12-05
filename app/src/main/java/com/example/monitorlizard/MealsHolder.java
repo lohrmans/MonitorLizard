@@ -7,6 +7,8 @@ public class MealsHolder {
     //so here we are.
     public static ArrayList<Meal> meals = new ArrayList<>();
 
+    public static String newMealTimeString = "";
+
     public static int findMeal(String mealTime) {
         int mealIndex = -1;
         for (int i = 0; i < meals.size(); i++) {

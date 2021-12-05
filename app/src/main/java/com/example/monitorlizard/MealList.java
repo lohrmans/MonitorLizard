@@ -27,15 +27,23 @@ public class MealList extends AppCompatActivity {
         //Need to change parameters to what I am passing to view in holder in adapter class
         MealListAdapter mealListAdapter = new MealListAdapter(MealList.this);
         rvMealList.setAdapter(mealListAdapter);
-
-
-
-
-
-
-
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
 
+        setContentView(R.layout.activity_meal_list);
+
+        rvMealList = findViewById(R.id.rvMealList);
+
+        rvMealList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        //Create new local arraylist copy
+        //Need to change parameters to what I am passing to view in holder in adapter class
+        MealListAdapter mealListAdapter = new MealListAdapter(MealList.this);
+        rvMealList.setAdapter(mealListAdapter);
+
+    }
 }

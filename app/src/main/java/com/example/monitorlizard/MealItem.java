@@ -6,7 +6,7 @@ public class MealItem {
     private String itemQuantity;
     private String itemUnits;
 
-    public MealItem(String itemName, String itemQuantity, String itemUnits) {
+    public MealItem(String itemName, String itemUnits, String itemQuantity) {
         this.itemName = itemName;
         this.itemQuantity = itemQuantity;
         this.itemUnits = itemUnits;

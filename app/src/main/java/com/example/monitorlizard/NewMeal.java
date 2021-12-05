@@ -1,6 +1,7 @@
 package com.example.monitorlizard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -50,6 +51,7 @@ public class NewMeal extends AppCompatActivity {
                     Intent intent = new Intent(v.getContext(), NewMealItem.class);
                     intent.putExtra("mealTime", newMeal.getMealTime().toString());
                     mealTime = newMeal.getMealTime().toString();
+                    MealsHolder.newMealTimeString = mealTime;
                     isNewMeal = false;
                     startActivity(intent);
                 }
@@ -58,4 +60,49 @@ public class NewMeal extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        setContentView(R.layout.activity_new_meal);
+
+        etMealName = findViewById(R.id.etMealName);
+        rvItemList = findViewById(R.id.rvItemList);
+        btnAddItem = findViewById(R.id.btnAddItem);
+        btnSaveMeal = findViewById(R.id.btnSaveMeal);
+
+        String mealTime = MealsHolder.newMealTimeString;
+        int newMealIndex = MealsHolder.findMeal(mealTime);
+
+        etMealName.setText(MealsHolder.meals.get(newMealIndex).getMealName());
+
+        rvItemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(NewMeal.this, mealTime);
+        rvItemList.setAdapter(mealItemListAdapter);
+
+        btnAddItem.setOnClickListener(v -> {
+            if (etMealName.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), "Please enter meal name.", Toast.LENGTH_SHORT).show();
+            } else {
+                if (!isNewMeal) {
+                    Intent intent = new Intent(v.getContext(), NewMealItem.class);
+                    intent.putExtra("mealTime", MealsHolder.newMealTimeString);
+                    startActivity(intent);
+                }
+//                else {
+//                    Meal newMeal = new Meal(etMealName.getText().toString());
+//                    MealsHolder.meals.add(newMeal);
+//
+//                    Intent intent = new Intent(v.getContext(), NewMealItem.class);
+//                    intent.putExtra("mealTime", newMeal.getMealTime().toString());
+//                    mealTime = newMeal.getMealTime().toString();
+//                    MealsHolder.newMealTimeString = mealTime;
+//                    isNewMeal = false;
+//                    startActivity(intent);
+//                }
+            }
+        });
+
+    }
 }

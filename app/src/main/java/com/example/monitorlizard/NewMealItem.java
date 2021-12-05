@@ -35,22 +35,51 @@ public class NewMealItem extends AppCompatActivity {
         String mealTime = bundle.getString("mealTime");
         int mealIndex = MealsHolder.findMeal(mealTime);
 
-        //I think it may have been easier in the end to edit the JSON file than these Arraylists.
-        btnSaveItem.setOnClickListener(v -> {
-            if (etItemName.getText().toString().isEmpty() ||
-                    etItemUnits.getText().toString().isEmpty() ||
-                    etItemQuantity.toString().isEmpty())
-            {
-                Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+        if (bundle.getString("itemName") != null) {
+            etItemName.setText(bundle.getString("itemName"));
+            etItemQuantity.setText(bundle.getString("itemQuantity"));
+            etItemUnits.setText(bundle.getString("itemUnits"));
 
-            } else {
-                MealItem newMealItem = new MealItem(etItemName.getText().toString(),
-                        etItemUnits.getText().toString(), etItemQuantity.getText().toString());
-                MealsHolder.meals.get(mealIndex).addMealItem(newMealItem);
+            int mealItemIndex = bundle.getInt("itemPosition");
 
-                finish();
-            }
-        });
+            btnSaveItem.setText("Edit");
+
+            btnSaveItem.setOnClickListener(v -> {
+                if (etItemName.getText().toString().isEmpty() ||
+                        etItemUnits.getText().toString().isEmpty() ||
+                        etItemQuantity.toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    MealItem newMealItem = new MealItem(etItemName.getText().toString(),
+                            etItemUnits.getText().toString(), etItemQuantity.getText().toString());
+                    MealsHolder.meals.get(mealIndex).editMealItem(mealItemIndex, newMealItem);
+
+                    finish();
+                }
+            });
+
+        } else {
+
+            btnSaveItem.setText("Save");
+
+            btnSaveItem.setOnClickListener(v -> {
+                if (etItemName.getText().toString().isEmpty() ||
+                        etItemUnits.getText().toString().isEmpty() ||
+                        etItemQuantity.toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+
+                } else {
+                    MealItem newMealItem = new MealItem(etItemName.getText().toString(),
+                            etItemUnits.getText().toString(), etItemQuantity.getText().toString());
+                    MealsHolder.meals.get(mealIndex).addMealItem(newMealItem);
+
+                    finish();
+                }
+            });
+        }
     }
 
 

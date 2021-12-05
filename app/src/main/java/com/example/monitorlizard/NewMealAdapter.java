@@ -16,25 +16,25 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
-public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapter.ItemViewHolder> {
+public class NewMealAdapter extends RecyclerView.Adapter<NewMealAdapter.NewItemViewHolder> {
 
     int mealPosition;
     Context context;
 
-    public MealItemListAdapter(Context context, String mealTime) {
+    public NewMealAdapter(Context context, String mealTime) {
         this.context = context;
         this.mealPosition = MealsHolder.findMeal(mealTime);
     }
 
     @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public NewItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.meal_item_row_layout, parent, false);
-        return new ItemViewHolder(v);
+        return new NewItemViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull NewItemViewHolder holder, int position) {
         holder.mealItemName.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemName());
         holder.mealItemQuantity.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemQuantity());
         holder.mealItemUnits.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemUnits());
@@ -59,11 +59,11 @@ public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapte
         return MealsHolder.meals.get(mealPosition).getMealItems().size();
     }
 
-    public class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class NewItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView mealItemName, mealItemQuantity, mealItemUnits;
 
-        public ItemViewHolder(@NonNull View itemView) {
+        public NewItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mealItemName = itemView.findViewById(R.id.mealItemName);
