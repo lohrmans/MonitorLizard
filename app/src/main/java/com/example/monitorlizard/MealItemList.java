@@ -1,8 +1,10 @@
 package com.example.monitorlizard;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,5 +28,16 @@ public class MealItemList extends AppCompatActivity {
 
         rvItemList = findViewById(R.id.rvItemList);
         tvMealName = findViewById(R.id.tvMealName);
+
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String mealTime = bundle.getString("mealTime");
+
+        tvMealName.setText(MealsHolder.meals.get(MealsHolder.findMeal(mealTime)).getMealName());
+
+        rvItemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+
+        MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(MealItemList.this, mealTime);
+        rvItemList.setAdapter(mealItemListAdapter);
     }
 }

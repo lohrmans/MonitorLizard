@@ -1,6 +1,7 @@
 package com.example.monitorlizard;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +16,10 @@ import java.util.List;
 
 public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyViewHolder> {
 
-    ArrayList<String> mealNames;
-    ArrayList<String> mealTimes;
     Context context;
 
     public MealListAdapter(Context context) {
         this.context = context;
-//        this.mealNames =
-//        this.mealTimes = mealTimes;
     }
 
     @NonNull
@@ -41,7 +38,9 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
         holder.itemView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //what happens when you click a meal
+                Intent intent = new Intent(view.getContext(), MealItemList.class);
+                intent.putExtra("mealTime", holder.mealDate.getText().toString());
+                context.startActivity(intent);
             }
         });
     }
@@ -51,7 +50,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
         return MealsHolder.meals.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView mealName, mealDate;
 

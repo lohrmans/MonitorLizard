@@ -22,6 +22,9 @@ public class NewMeal extends AppCompatActivity {
     RecyclerView rvItemList;
     Button btnAddItem, btnSaveMeal;
 
+    private boolean isNewMeal = true;
+    private String mealTime = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +39,20 @@ public class NewMeal extends AppCompatActivity {
             if (etMealName.getText().toString().isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter meal name.", Toast.LENGTH_SHORT).show();
             } else {
-                Meal newMeal = new Meal(etMealName.getText().toString());
-                MealsHolder.meals.add(newMeal);
+                if (!isNewMeal) {
+                    Intent intent = new Intent(v.getContext(), NewMealItem.class);
+                    intent.putExtra("mealTime", mealTime);
+                    startActivity(intent);
+                } else {
+                    Meal newMeal = new Meal(etMealName.getText().toString());
+                    MealsHolder.meals.add(newMeal);
 
-                Intent intent = new Intent(v.getContext(), NewMealItem.class);
-                intent.putExtra("mealTime", newMeal.getMealTime().toString());
-                startActivity(intent);
+                    Intent intent = new Intent(v.getContext(), NewMealItem.class);
+                    intent.putExtra("mealTime", newMeal.getMealTime().toString());
+                    mealTime = newMeal.getMealTime().toString();
+                    isNewMeal = false;
+                    startActivity(intent);
+                }
             }
         });
 

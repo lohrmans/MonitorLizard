@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,8 +32,8 @@ public class NewMealItem extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
-            String mealTime = bundle.getString("mealTime");
-            int mealIndex = MealsHolder.findMeal(mealTime);
+        String mealTime = bundle.getString("mealTime");
+        int mealIndex = MealsHolder.findMeal(mealTime);
 
         //I think it may have been easier in the end to edit the JSON file than these Arraylists.
         btnSaveItem.setOnClickListener(v -> {
@@ -41,13 +42,17 @@ public class NewMealItem extends AppCompatActivity {
                     etItemQuantity.toString().isEmpty())
             {
                 Toast.makeText(getApplicationContext(), "Please enter all fields.", Toast.LENGTH_SHORT).show();
+
             } else {
                 MealItem newMealItem = new MealItem(etItemName.getText().toString(),
                         etItemUnits.getText().toString(), etItemQuantity.getText().toString());
                 MealsHolder.meals.get(mealIndex).addMealItem(newMealItem);
+
+                finish();
             }
         });
     }
+
 
 
 }
