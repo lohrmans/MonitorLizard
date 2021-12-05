@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapter.ItemViewHolder> {
 
     int mealPosition;
-
     Context context;
 
     public MealItemListAdapter(Context context, String mealTime) {
@@ -35,16 +34,17 @@ public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        holder.mealItemName.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemName());
-        holder.mealItemQuantity.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemQuantity());
-        holder.mealItemUnits.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemUnits());
-//        holder.mealItemName.setText("Test");
+//        holder.mealItemName.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemName());
+//        holder.mealItemQuantity.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemQuantity());
+//        holder.mealItemUnits.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemUnits());
+        holder.mealItemName.setText("Test");
     }
 
     //Length of item list
     @Override
     public int getItemCount() {
-        return MealsHolder.meals.get(mealPosition).getMealItems().size();
+//        return MealsHolder.meals.get(mealPosition).getMealItems().size();
+        return 1;
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -54,7 +54,7 @@ public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapte
         public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            mealItemName = itemView.findViewById(R.id.mealName);
+            mealItemName = itemView.findViewById(R.id.mealItemName);
             mealItemQuantity = itemView.findViewById(R.id.mealItemQuantity);
             mealItemUnits = itemView.findViewById(R.id.mealItemUnits);
 
