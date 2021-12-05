@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +37,8 @@ public class NewMeal extends AppCompatActivity {
         btnAddItem = findViewById(R.id.btnAddItem);
         btnSaveMeal = findViewById(R.id.btnSaveMeal);
 
+        btnSaveMeal.setVisibility(View.GONE);
+
         btnAddItem.setOnClickListener(v -> {
             if (etMealName.getText().toString().isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter meal name.", Toast.LENGTH_SHORT).show();
@@ -58,6 +61,7 @@ public class NewMeal extends AppCompatActivity {
             }
         });
 
+
     }
 
     @Override
@@ -70,6 +74,8 @@ public class NewMeal extends AppCompatActivity {
         rvItemList = findViewById(R.id.rvItemList);
         btnAddItem = findViewById(R.id.btnAddItem);
         btnSaveMeal = findViewById(R.id.btnSaveMeal);
+
+        btnSaveMeal.setVisibility(View.VISIBLE);
 
         String mealTime = MealsHolder.newMealTimeString;
         int newMealIndex = MealsHolder.findMeal(mealTime);
@@ -90,19 +96,19 @@ public class NewMeal extends AppCompatActivity {
                     intent.putExtra("mealTime", MealsHolder.newMealTimeString);
                     startActivity(intent);
                 }
-//                else {
-//                    Meal newMeal = new Meal(etMealName.getText().toString());
-//                    MealsHolder.meals.add(newMeal);
-//
-//                    Intent intent = new Intent(v.getContext(), NewMealItem.class);
-//                    intent.putExtra("mealTime", newMeal.getMealTime().toString());
-//                    mealTime = newMeal.getMealTime().toString();
-//                    MealsHolder.newMealTimeString = mealTime;
-//                    isNewMeal = false;
-//                    startActivity(intent);
-//                }
+            }
+        });
+
+        btnSaveMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MealsHolder.writeToFile("meals.json", MealsHolder.toJSON(), getApplicationContext());
+                finish();
             }
         });
 
     }
+
+
+
 }

@@ -1,11 +1,15 @@
 package com.example.monitorlizard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +25,8 @@ public class MealItemList extends AppCompatActivity {
     RecyclerView rvItemList;
     TextView tvMealName;
 
+    private int currentMeal = -1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +38,8 @@ public class MealItemList extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String mealTime = bundle.getString("mealTime");
+
+        currentMeal = MealsHolder.findMeal(mealTime);
 
         tvMealName.setText(MealsHolder.meals.get(MealsHolder.findMeal(mealTime)).getMealName());
 
@@ -55,11 +63,30 @@ public class MealItemList extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         String mealTime = bundle.getString("mealTime");
 
+        currentMeal = MealsHolder.findMeal(mealTime);
+
         tvMealName.setText(MealsHolder.meals.get(MealsHolder.findMeal(mealTime)).getMealName());
 
         rvItemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(MealItemList.this, mealTime);
         rvItemList.setAdapter(mealItemListAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.delete_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        MealsHolder.meals.remove(currentMeal);
+
+        Toast.makeText(this, "Meal Deleted", Toast.LENGTH_SHORT).show();
+
+        return super.onOptionsItemSelected(item);
     }
 }
