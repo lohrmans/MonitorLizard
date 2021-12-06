@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Monitor Lizard</string>
-    <string name="Edit">Edit</string>
-    <string name="Save">Save</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="meal">Meal</string>
+    <string name="view_meals">View Meals</string>
+    <string name="new_meal">New Meal</string>
+    <string name="monitor_lizard">Monitor Lizard</string>
+    <string name="meals">Meals</string>
+    <string name="enter_meal_name">Enter meal name</string>
+    <string name="add_item">Add Item</string>
+    <string name="save_meal">Save Meal</string>
+    <string name="item_name">Item Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="units">Units</string>
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="units">Units</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="add_item">Add Item</string>
+    <string name="delete_meal">Delete Meal</string>
 </resources>
