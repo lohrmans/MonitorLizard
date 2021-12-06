@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,12 +82,23 @@ public class MealItemList extends AppCompatActivity {
         return true;
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        MealsHolder.meals.remove(currentMeal);
-
-        Toast.makeText(this, "Meal Deleted", Toast.LENGTH_SHORT).show();
-
+        switch (item.getItemId()) {
+            case R.id.addItem:
+                Intent intent = new Intent(getApplicationContext(), NewMealItem.class);
+                intent.putExtra("mealTime", MealsHolder.meals.get(currentMeal).getMealTime().toString());
+                startActivity(intent);
+                return true;
+            case R.id.delete:
+                MealsHolder.meals.remove(currentMeal);
+                MealsHolder.writeToFile("meals.json", MealsHolder.toJSON(), getApplicationContext());
+                Toast.makeText(this, "Meal Deleted", Toast.LENGTH_SHORT).show();
+                finish();
+                return true;
+            default:
+        }
         return super.onOptionsItemSelected(item);
     }
 }

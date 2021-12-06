@@ -24,8 +24,12 @@ public class Meal {
         mealItems = new ArrayList<>();
     }
 
-    public void editMealItem(int mealIndex, MealItem mealItem) {
-        mealItems.set(mealIndex, mealItem);
+    public void editMealItem(int mealItemIndex, MealItem mealItem) {
+        mealItems.set(mealItemIndex, mealItem);
+    }
+
+    public void deleteMealItem(int mealItemIndex) {
+        mealItems.remove(mealItemIndex);
     }
 
     public void addMealItem(MealItem mealItem) {

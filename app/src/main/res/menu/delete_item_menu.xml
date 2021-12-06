@@ -2,12 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/addItem"
-        android:title="Add Item"
-        app:showAsAction="never" />
-
     <item android:id="@+id/delete"
-        android:title="Delete Meal"
+        android:title="Delete Item"
         app:showAsAction="never" />
 
 

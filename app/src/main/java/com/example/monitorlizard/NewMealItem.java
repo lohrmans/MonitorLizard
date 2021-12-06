@@ -1,10 +1,14 @@
 package com.example.monitorlizard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,6 +84,28 @@ public class NewMealItem extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if(btnSaveItem.getText().equals("Edit")) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.delete_item_menu, menu);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        String mealTime = bundle.getString("mealTime");
+        int mealIndex = MealsHolder.findMeal(mealTime);
+        int mealItemIndex = bundle.getInt("itemPosition");
+        MealsHolder.meals.get(mealIndex).deleteMealItem(mealItemIndex);
+        MealsHolder.writeToFile("meals.json", MealsHolder.toJSON(), getApplicationContext());
+        finish();
+        return super.onOptionsItemSelected(item);
     }
 
 

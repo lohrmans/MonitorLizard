@@ -50,12 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
 
-
-
-
-
-
-
+        MealsHolder.writeToFile("meals.json", MealsHolder.toJSON(), getApplicationContext());
+    }
 }
 
