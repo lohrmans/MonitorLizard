@@ -20,10 +20,9 @@
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="@string/item_name"
+            android:hint="Item Name"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:autofillHints="" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/etItemQuantity"
@@ -33,10 +32,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="@string/quantity"
+            android:hint="Quantity"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/etItemUnits"
@@ -46,10 +44,9 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:ems="10"
-            android:hint="@string/units"
+            android:hint="Units"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:importantForAutofill="no" />
+            android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btnSaveItem"
@@ -58,7 +55,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
-            android:text="@string/save" />
+            android:text="Save" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

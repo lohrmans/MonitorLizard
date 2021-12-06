@@ -48,7 +48,7 @@ public class NewMealItem extends AppCompatActivity {
 
             int mealItemIndex = bundle.getInt("itemPosition");
 
-            btnSaveItem.setText(R.string.edit);
+            btnSaveItem.setText(R.string.Edit);
 
             //Updates meal item if all fields are entered
             btnSaveItem.setOnClickListener(v -> {
@@ -70,7 +70,7 @@ public class NewMealItem extends AppCompatActivity {
             //Saves new item
         } else {
 
-            btnSaveItem.setText(R.string.save);
+            btnSaveItem.setText(R.string.Save);
 
             btnSaveItem.setOnClickListener(v -> {
                 if (etItemName.getText().toString().isEmpty() ||

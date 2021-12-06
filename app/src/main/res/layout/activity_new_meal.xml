@@ -26,16 +26,13 @@
 
             <EditText
                 android:id="@+id/etMealName"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/enter_meal_name"
-                android:hintTextColor="#757575"
+                android:hint="Enter meal name"
                 android:inputType="textPersonName"
-                android:minHeight="48dp"
-                tools:ignore="TextContrastCheck"
-                android:importantForAutofill="no" />
+                android:minHeight="48dp" />
 
         </LinearLayout>
 
@@ -52,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/add_item"
+        android:text="Add Item"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -61,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:text="@string/save_meal"
+        android:text="Save Meal"
         app:layout_constraintBottom_toBottomOf="@+id/btnAddItem"
         app:layout_constraintStart_toEndOf="@+id/btnAddItem" />
 </androidx.constraintlayout.widget.ConstraintLayout>
