@@ -1,7 +1,6 @@
 package com.example.monitorlizard;
 
 import android.content.Context;
-import android.util.JsonReader;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -15,13 +14,18 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+//So I am sure that this is not good programming practice here. Having a static class holding this.
+//I wasn't confident enough about the activity lifecycle to know that my list of meals would stay
+//if I put it anywhere else.
 public class MealsHolder {
-    //This feels like bad practice here, but I am short on time and I'm pretty confident it will work,
-    //so here we are.
+
+    //This is the list of meals used across the whole application
     public static ArrayList<Meal> meals = new ArrayList<>();
 
+    //This is used in newMealItem to refer to the meal that was created
     public static String newMealTimeString = "";
 
+    //Uses the meal time to find the index of the meal in the list
     public static int findMeal(String mealTime) {
         int mealIndex = -1;
         for (int i = 0; i < meals.size(); i++) {
@@ -33,6 +37,8 @@ public class MealsHolder {
         return mealIndex;
     }
 
+    //I somehow wrote the next few methods here and they worked on the first try. I was incredulous.
+    //This method prepares the meals ArrayList for storage by converting it to a JSONObject.
     public static String toJSON(){
         try {
             JSONObject mealsObject = new JSONObject();
@@ -65,6 +71,7 @@ public class MealsHolder {
         }
     }
 
+    //This method takes a string parameter and creates the meals ArrayList out of it.
     public static void parseJSON(String data) {
         ArrayList<Meal>jSONmeals = new ArrayList<>();
 
@@ -101,18 +108,19 @@ public class MealsHolder {
 
     }
 
+    //Writes the output of toJSON to the specified file
     public static void writeToFile(String fileName, String content, Context context) {
         File path = context.getApplicationContext().getFilesDir();
         try {
             FileOutputStream writer = new FileOutputStream(new File(path, fileName));
             writer.write(content.getBytes());
             writer.close();
-            Toast.makeText(context.getApplicationContext(), "Wrote to file " + fileName, Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    //Reads and returns string read from file
     public static String readFromFile(String fileName, Context context) {
         File path = context.getApplicationContext().getFilesDir();
         File readFrom = new File(path, fileName);

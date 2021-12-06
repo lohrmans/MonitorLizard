@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+//Activity for adding and editing meal items
 public class NewMealItem extends AppCompatActivity {
 
     Button btnSaveItem;
@@ -32,13 +33,14 @@ public class NewMealItem extends AppCompatActivity {
 
         btnSaveItem = findViewById(R.id.btnSaveItem);
 
-        //Break out into method
+        //Gets information on meal item that was pressed
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
         String mealTime = bundle.getString("mealTime");
         int mealIndex = MealsHolder.findMeal(mealTime);
 
+        //Sets editTexts if item was information was passed in bundle and changes button to edit
         if (bundle.getString("itemName") != null) {
             etItemName.setText(bundle.getString("itemName"));
             etItemQuantity.setText(bundle.getString("itemQuantity"));
@@ -46,8 +48,9 @@ public class NewMealItem extends AppCompatActivity {
 
             int mealItemIndex = bundle.getInt("itemPosition");
 
-            btnSaveItem.setText("Edit");
+            btnSaveItem.setText(R.string.Edit);
 
+            //Updates meal item if all fields are entered
             btnSaveItem.setOnClickListener(v -> {
                 if (etItemName.getText().toString().isEmpty() ||
                         etItemUnits.getText().toString().isEmpty() ||
@@ -64,9 +67,10 @@ public class NewMealItem extends AppCompatActivity {
                 }
             });
 
+            //Saves new item
         } else {
 
-            btnSaveItem.setText("Save");
+            btnSaveItem.setText(R.string.Save);
 
             btnSaveItem.setOnClickListener(v -> {
                 if (etItemName.getText().toString().isEmpty() ||
@@ -86,6 +90,7 @@ public class NewMealItem extends AppCompatActivity {
         }
     }
 
+    //Adds option menu for deleting only if item already exists
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if(btnSaveItem.getText().equals("Edit")) {
@@ -95,6 +100,7 @@ public class NewMealItem extends AppCompatActivity {
         return true;
     }
 
+    //Deletes current meal item
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         Intent intent = getIntent();

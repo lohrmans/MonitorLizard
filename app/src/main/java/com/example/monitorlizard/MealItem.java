@@ -1,5 +1,6 @@
 package com.example.monitorlizard;
 
+//Template for meal items created by user.
 public class MealItem {
 
     private String itemName;

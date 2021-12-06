@@ -23,9 +23,6 @@ public class MainActivity extends AppCompatActivity {
 
     private Button btnNewMeal, btnViewMeals;
 
-    private ArrayList<Meal> meals = null;
-    private ArrayList<MealItem> mealItems = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         btnNewMeal = findViewById(R.id.btnNewMeal);
         btnViewMeals = findViewById(R.id.btnViewMeals);
 
+        //If meals exist read meals.json. Starts newMeal activity
         btnNewMeal.setOnClickListener(v -> {
             if (MealsHolder.meals.size() == 0) {
                 MealsHolder.parseJSON(MealsHolder.readFromFile("meals.json", getApplicationContext()));
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, NewMeal.class));
         });
 
+        ////If meals exist read meals.json. Starts MealList activity
         btnViewMeals.setOnClickListener(v -> {
             if (MealsHolder.meals.size() == 0) {
                 MealsHolder.parseJSON(MealsHolder.readFromFile("meals.json", getApplicationContext()));
@@ -50,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Saves meals to meals.json when MainActivity is restarted
     @Override
     protected void onRestart() {
         super.onRestart();
-
         MealsHolder.writeToFile("meals.json", MealsHolder.toJSON(), getApplicationContext());
     }
 }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+//Adapter for MealList Activity
 public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyViewHolder> {
 
     Context context;
@@ -22,6 +23,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
         this.context = context;
     }
 
+    //Specifies layout to use for each row in recyclerView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,13 +37,11 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
         holder.mealName.setText(MealsHolder.meals.get(position).getMealName());
         holder.mealDate.setText(MealsHolder.meals.get(position).getMealTime().toString());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MealItemList.class);
-                intent.putExtra("mealTime", holder.mealDate.getText().toString());
-                context.startActivity(intent);
-            }
+        //Passes mealTime so that the correct meal is referenced in MealItemList activity
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), MealItemList.class);
+            intent.putExtra("mealTime", holder.mealDate.getText().toString());
+            context.startActivity(intent);
         });
     }
 
@@ -50,6 +50,7 @@ public class MealListAdapter extends RecyclerView.Adapter<MealListAdapter.MyView
         return MealsHolder.meals.size();
     }
 
+    //Constructor for views in recyclerView
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         TextView mealName, mealDate;

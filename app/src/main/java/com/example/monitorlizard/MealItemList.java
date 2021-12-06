@@ -36,6 +36,9 @@ public class MealItemList extends AppCompatActivity {
         rvItemList = findViewById(R.id.rvItemList);
         tvMealName = findViewById(R.id.tvMealName);
 
+        //Retrieves mealTime from bundle. mealTime is used across the app to track which meal is being
+        //displayed currently. I chose to use the time because it was an easy way to give each meal
+        //a unique id.
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         String mealTime = bundle.getString("mealTime");
@@ -44,6 +47,7 @@ public class MealItemList extends AppCompatActivity {
 
         tvMealName.setText(MealsHolder.meals.get(MealsHolder.findMeal(mealTime)).getMealName());
 
+        //Setting up recyclerView adapter to show meal items.
         rvItemList.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         MealItemListAdapter mealItemListAdapter = new MealItemListAdapter(MealItemList.this, mealTime);
@@ -54,7 +58,7 @@ public class MealItemList extends AppCompatActivity {
     protected void onRestart() {
         super.onRestart();
 
-
+        //I used onRestart to reload updated lists as the user navigates the app.
         setContentView(R.layout.activity_meal_item_list);
 
         rvItemList = findViewById(R.id.rvItemList);
@@ -74,6 +78,7 @@ public class MealItemList extends AppCompatActivity {
         rvItemList.setAdapter(mealItemListAdapter);
     }
 
+    //Inflates delete_menu.xml so that user can delete the meal or add new items
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -82,6 +87,7 @@ public class MealItemList extends AppCompatActivity {
         return true;
     }
 
+    //Sets onClickListeners for options menu allowing user to add items or delete the meal.
     @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {

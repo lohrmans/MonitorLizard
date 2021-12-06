@@ -16,16 +16,19 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+//RecyclerView Adapter for mealItemList activity
 public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapter.ItemViewHolder> {
 
     int mealPosition;
     Context context;
 
+    //mealTime is passed to pull meals from the meals list
     public MealItemListAdapter(Context context, String mealTime) {
         this.context = context;
         this.mealPosition = MealsHolder.findMeal(mealTime);
     }
 
+    //Specifies layout to use for each row in recyclerView
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,26 +42,25 @@ public class MealItemListAdapter extends RecyclerView.Adapter<MealItemListAdapte
         holder.mealItemQuantity.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemQuantity());
         holder.mealItemUnits.setText(MealsHolder.meals.get(mealPosition).getMealItems().get(position).getItemUnits());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), NewMealItem.class);
-                intent.putExtra("mealTime", MealsHolder.meals.get(mealPosition).getMealTime().toString());
-                intent.putExtra("itemName", holder.mealItemName.getText());
-                intent.putExtra("itemQuantity", holder.mealItemQuantity.getText());
-                intent.putExtra("itemUnits", holder.mealItemUnits.getText());
-                intent.putExtra("itemPosition", holder.getAdapterPosition());
-                context.startActivity(intent);
-            }
+        //This passes information on which item was clicked to the NewMealItem class
+        holder.itemView.setOnClickListener(view -> {
+            Intent intent = new Intent(view.getContext(), NewMealItem.class);
+            intent.putExtra("mealTime", MealsHolder.meals.get(mealPosition).getMealTime().toString());
+            intent.putExtra("itemName", holder.mealItemName.getText());
+            intent.putExtra("itemQuantity", holder.mealItemQuantity.getText());
+            intent.putExtra("itemUnits", holder.mealItemUnits.getText());
+            intent.putExtra("itemPosition", holder.getAdapterPosition());
+            context.startActivity(intent);
         });
     }
 
-    //Length of item list
+    //Length of list
     @Override
     public int getItemCount() {
         return MealsHolder.meals.get(mealPosition).getMealItems().size();
     }
 
+    //Constructor for view in recyclerView
     public class ItemViewHolder extends RecyclerView.ViewHolder {
 
         TextView mealItemName, mealItemQuantity, mealItemUnits;

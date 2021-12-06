@@ -1,9 +1,10 @@
 package com.example.monitorlizard;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+//Template for user created meals containing a name, time, and list of items. With constructors
+//for meals made by user and meals loaded from meals.json
 public class Meal {
 
     private String mealName;
@@ -24,6 +25,7 @@ public class Meal {
         mealItems = new ArrayList<>();
     }
 
+    //Updates mealItem at specified index.
     public void editMealItem(int mealItemIndex, MealItem mealItem) {
         mealItems.set(mealItemIndex, mealItem);
     }

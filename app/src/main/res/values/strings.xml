@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Monitor Lizard</string>
+    <string name="Edit">Edit</string>
+    <string name="Save">Save</string>
 </resources>
